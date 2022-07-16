@@ -36,8 +36,6 @@ class ApiCall {
       Question q = Question(i['question'], i['questionImage'], i['option1'], i['option2'], 
         i['option3'], i['option4'], i['option1Image'], i['option2Image'], 
         i['option3Image'], i['option4Image']);
-      
-      print(q);
       questions.add(q);
     }
 
