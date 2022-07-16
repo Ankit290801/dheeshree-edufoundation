@@ -50,6 +50,7 @@ class _QuestionsState extends State<Questions> {
   @override
   void initState(){
     super.initState();
+    getQ();
     startTimer();
     getQ();
   }

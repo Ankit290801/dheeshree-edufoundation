@@ -31,7 +31,6 @@ class ApiCall {
     var responseBody = json.decode(response.body);
     var responseQuestions = responseBody['result'];
     List<Question> questions = [];
-
     for(var i in responseQuestions){
       Question q = Question(i['question'], i['questionImage'], i['option1'], i['option2'], 
         i['option3'], i['option4'], i['option1Image'], i['option2Image'], 

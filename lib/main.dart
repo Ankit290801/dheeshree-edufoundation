@@ -1,36 +1,39 @@
-import 'package:edufoundation_app/screens/selectTimerDiff.dart';
+import 'package:edufoundation_app/constants/route_constants.dart';
+import 'package:edufoundation_app/routes/router.dart';
 import 'package:edufoundation_app/screens/splashScreen.dart';
-import 'package:edufoundation_app/screens/subjectChapters.dart';
 import 'package:flutter/material.dart';
-import 'package:edufoundation_app/utils/bottomBar.dart';
-import 'package:edufoundation_app/utils/routes.dart';
-// import 'package:edufoundation_app/screens/physics.dart';
-// import 'package:edufoundation_app/screens/biology.dart';
-// import 'package:edufoundation_app/screens/chemistry.dart';
-// import 'package:edufoundation_app/screens/maths.dart';
-// import 'package:edufoundation_app/screens/register.dart';
-// import 'package:edufoundation_app/screens/login.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    initialRoute: '/',
-    routes: {
-      // '/' : (context) => MyLogin(),
+  runApp(MyApp());
+}
 
-      '/' : (context) => Splash(),
-      // MyRoutes.register : (context) => MyRegister(),
-      MyRoutes.home : (context) => BottomBar(),
-      // MyRoutes.physics : (context) => Physics(),
-      // MyRoutes.chemistry : (context) => Chemistry(),
-      // MyRoutes.maths : (context) => Maths(),
-      // MyRoutes.biology : (context) => Biology(),
-      MyRoutes.subjectChapters : (context) => SubjectChapters(subjectName: ""),
-      MyRoutes.selectTimerDiff : (context) => SelectTimerDiff(subjectName: "", chapterName: ""),
-      // MyRoutes.physicsQuestions : (context) => Questions(subjectName: "", chapterName: "", difficulty: '', noOfQues: 0, time: 0),
-      // MyRoutes.chemistryQuestions : (context) => Questions(subjectName: "", chapterName: "", difficulty: '', noOfQues: 0, time: 0),
-      // MyRoutes.mathsQuestions : (context) => Questions(subjectName: "", chapterName: "", difficulty: '', noOfQues: 0, time: 0),
-      // MyRoutes.biologyQuestions : (context) => Questions(subjectName: "", chapterName: "", difficulty: '', noOfQues: 0, time: 0),
-    },
-  ));
+void configLoading() {
+  EasyLoading.instance
+    ..displayDuration = const Duration(milliseconds: 2000)
+    ..indicatorType = EasyLoadingIndicatorType.fadingCircle
+    ..loadingStyle = EasyLoadingStyle.dark
+    ..indicatorSize = 45.0
+    ..radius = 10.0
+    ..progressColor = Colors.yellow
+    ..backgroundColor = Colors.green
+    ..indicatorColor = Colors.yellow
+    ..textColor = Colors.yellow
+    ..maskColor = Colors.blue.withOpacity(0.5)
+    ..userInteractions = true
+    ..dismissOnTap = true;
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialRoute: splashScreen,
+      home: Splash(),
+      onGenerateRoute: AppRouter.generateRoute,
+    );
+  }
 }
