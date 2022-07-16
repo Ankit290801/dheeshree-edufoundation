@@ -1,5 +1,5 @@
 const String splashScreen = '/';
-const String home = 'home';
+const String home = '/home';
 const String physics = 'physics';
 const String chemistry = 'chemistry';
 const String maths = 'maths';
