@@ -11,6 +11,7 @@ class Dashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget star = Icon(Icons.star);
     return Scaffold(
       drawer: NavigationDrawerWidget(),
       appBar: AppBar(
@@ -37,7 +38,7 @@ class Dashboard extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  "Ace Your Game",
+                  "Aspire \u2022 Assimilate \u2022 Achieve",
                   style: TextStyle(
                     color: Colors.grey.shade50,
                     fontSize: 20,
@@ -50,16 +51,6 @@ class Dashboard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 InkWell(
-                  // onTap: () async {
-                  //   // Navigator.pushNamed(context, MyRoutes.physics);
-                  //   await Navigator.of(context).push(
-                  //     MaterialPageRoute(
-                  //       builder: (_) => SubjectChapters(
-                  //         subjectName: "Physics",
-                  //       ),
-                  //     ),
-                  //   );
-                  // },
                   onTap: (){
                     Navigator.of(context).pushNamed(
                       subjectChapters, 
@@ -94,17 +85,6 @@ class Dashboard extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                  // onTap: () {
-                  //   // Navigator.pushNamed(context, MyRoutes.physics);
-                  //   Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (_) => SubjectChapters(
-                  //         subjectName: "Chemistry",
-                  //       ),
-                  //     ),
-                  //   );
-                  // },
                   onTap: (){
                     Navigator.of(context).pushNamed(
                       subjectChapters, 
@@ -144,17 +124,6 @@ class Dashboard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 InkWell(
-                  // onTap: () {
-                  //   // Navigator.pushNamed(context, MyRoutes.physics);
-                  //   Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (_) => SubjectChapters(
-                  //         subjectName: "Mathematics",
-                  //       ),
-                  //     ),
-                  //   );
-                  // },
                   onTap: (){
                     Navigator.of(context).pushNamed(
                       subjectChapters, 
@@ -189,17 +158,6 @@ class Dashboard extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                  // onTap: () {
-                  //   // Navigator.pushNamed(context, MyRoutes.physics);
-                  //   Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (_) => SubjectChapters(
-                  //         subjectName: "Biology",
-                  //       ),
-                  //     ),
-                  //   );
-                  // },
                   onTap: (){
                     Navigator.of(context).pushNamed(
                       subjectChapters, 

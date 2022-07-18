@@ -1,4 +1,10 @@
+import 'package:edufoundation_app/screens/about-company/contact.dart';
+import 'package:edufoundation_app/screens/about-company/about.dart';
+import 'package:edufoundation_app/screens/about-company/mission.dart';
+import 'package:edufoundation_app/screens/profile.dart';
 import 'package:edufoundation_app/screens/subjectChapters.dart';
+import 'package:edufoundation_app/screens/about-company/team.dart';
+import 'package:edufoundation_app/screens/underConstruction.dart';
 import 'package:flutter/material.dart';
 
 import '../../screens/splashScreen.dart';
@@ -31,6 +37,16 @@ class AppRouter {
         else {
           return _error();
         }
+      case mission:
+        return MaterialPageRoute(builder: (_) => Mission());
+      case contact:
+        return MaterialPageRoute(builder: (_) => Contact());
+      case team:
+        return MaterialPageRoute(builder: (_) => Team());
+      case about:
+        return MaterialPageRoute(builder: (_) => About());
+      case underConstruction:
+        return MaterialPageRoute(builder: (_) => PageUnderConstruction());
       default:
         return MaterialPageRoute(builder: (_) => const Splash());
     }

@@ -20,29 +20,34 @@ class _ExamListState extends State<ExamList> {
         physics: BouncingScrollPhysics(),
         itemCount: engExams.length,
         itemBuilder: (BuildContext context, int index){
-          return Container(
-            margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            decoration: BoxDecoration(
-              color: Color.fromARGB(252, 66, 65, 66),
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.shade200,
-                  blurRadius: 10.0, // soften the shadow
-                  spreadRadius: 2.0, //extend the shadow
-                  offset: Offset(
-                    1.0, // Move to right 10  horizontally
-                    1.0, // Move to bottom 10 Vertically
-                  ),
-                )
-              ],
-            ),
-            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-            child: Text(
-              engExams[index],
-              style: TextStyle(
-                fontSize: 18.0,
-                color: Color.fromARGB(255, 248, 245, 245),
+          return InkWell(
+            onTap: () {
+              Navigator.of(context).pushNamed('/under-construction');
+            },
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              decoration: BoxDecoration(
+                color: Color.fromARGB(252, 66, 65, 66),
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade200,
+                    blurRadius: 10.0, // soften the shadow
+                    spreadRadius: 2.0, //extend the shadow
+                    offset: Offset(
+                      1.0, // Move to right 10  horizontally
+                      1.0, // Move to bottom 10 Vertically
+                    ),
+                  )
+                ],
+              ),
+              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+              child: Text(
+                engExams[index],
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Color.fromARGB(255, 248, 245, 245),
+                ),
               ),
             ),
           ); 
@@ -59,29 +64,78 @@ class _ExamListState extends State<ExamList> {
         physics: BouncingScrollPhysics(),
         itemCount: medicalExams.length,
         itemBuilder: (BuildContext context, int index){
-          return Container(
-            margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            decoration: BoxDecoration(
-              color: Color.fromARGB(252, 66, 65, 66),
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.shade200,
-                  blurRadius: 10.0, // soften the shadow
-                  spreadRadius: 2.0, //extend the shadow
-                  offset: Offset(
-                    1.0, // Move to right 10  horizontally
-                    1.0, // Move to bottom 10 Vertically
-                  ),
-                )
-              ],
+          return InkWell(
+            onTap: () {
+              Navigator.of(context).pushNamed('/under-construction');
+            },
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              decoration: BoxDecoration(
+                color: Color.fromARGB(252, 66, 65, 66),
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade200,
+                    blurRadius: 10.0, // soften the shadow
+                    spreadRadius: 2.0, //extend the shadow
+                    offset: Offset(
+                      1.0, // Move to right 10  horizontally
+                      1.0, // Move to bottom 10 Vertically
+                    ),
+                  )
+                ],
+              ),
+              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+              child: Text(
+                medicalExams[index],
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Color.fromARGB(255, 248, 245, 245),
+                ),
+              ),
             ),
-            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-            child: Text(
-              medicalExams[index],
-              style: TextStyle(
-                fontSize: 18.0,
-                color: Color.fromARGB(255, 248, 245, 245),
+          ); 
+        }
+      ),
+    );
+  }
+
+  Widget otherExamList(){
+    List medicalExams = ["UPSC", "CAT", "IELTS", "IITJAM"];
+    return Container(
+      height: 500,
+      child: ListView.builder(
+        physics: BouncingScrollPhysics(),
+        itemCount: medicalExams.length,
+        itemBuilder: (BuildContext context, int index){
+          return InkWell(
+            onTap: () {
+              Navigator.of(context).pushNamed('/under-construction');
+            },
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              decoration: BoxDecoration(
+                color: Color.fromARGB(252, 66, 65, 66),
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.shade200,
+                    blurRadius: 10.0, // soften the shadow
+                    spreadRadius: 2.0, //extend the shadow
+                    offset: Offset(
+                      1.0, // Move to right 10  horizontally
+                      1.0, // Move to bottom 10 Vertically
+                    ),
+                  )
+                ],
+              ),
+              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+              child: Text(
+                medicalExams[index],
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Color.fromARGB(255, 248, 245, 245),
+                ),
               ),
             ),
           ); 
@@ -229,7 +283,7 @@ class _ExamListState extends State<ExamList> {
               
               showEngList ? engineeringExamList() : Container(),
               showMedicalList ? medicalExamList() : Container(),
-              showOtherList ? Text("Other List") : Container(),
+              showOtherList ? otherExamList() : Container(),
             ],
           ),
         ),

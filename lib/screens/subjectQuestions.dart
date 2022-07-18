@@ -52,7 +52,6 @@ class _QuestionsState extends State<Questions> {
     super.initState();
     getQ();
     startTimer();
-    getQ();
   }
 
   List<Question> _questions = [];
