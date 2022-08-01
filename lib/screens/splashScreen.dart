@@ -33,6 +33,18 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+
+    var fontsize;
+    var spinsize;
+
+    width < 385 ? {
+      fontsize = 30,
+      spinsize = 40
+     } : {
+      fontsize = 40,
+      spinsize = 50
+     };
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -41,24 +53,23 @@ class _SplashState extends State<Splash> {
           fit: BoxFit.cover,
         )),
         child: Padding(
-          padding: EdgeInsets.fromLTRB(
-              width * 0.1, height * 0.25, width * 0.1, width * 0.90),
+          padding: EdgeInsets.symmetric(vertical: height * 0.3),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             // ignore: prefer_const_literals_to_create_immutables
             children: [
               Text(
                 'EduFoundation',
                 style: TextStyle(
-                  fontSize: 40,
+                  fontSize: fontsize,
                   fontWeight: FontWeight.w700,
                   color: Colors.white70,
                   letterSpacing: 1.5,
                 ),
               ),
+              SizedBox(height: 20,),
               SpinKitFadingCircle(
                 color: Colors.white,
-                size: 50.0,
+                size: spinsize,
               )
             ],
           ),

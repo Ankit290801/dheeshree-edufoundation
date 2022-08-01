@@ -30,9 +30,13 @@ class _SelectTimerDiffState extends State<SelectTimerDiff> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
 
+    var sizedBoxHeight;
+
+    height < 610 ? sizedBoxHeight = 30 : sizedBoxHeight = 40;
+
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.fromLTRB(10, height*0.1, 10, 20),
+        padding: EdgeInsets.symmetric(horizontal: 10, vertical: height*0.05),
         color: Colors.white,
         child: Form(
           key: _formKey,
@@ -175,7 +179,7 @@ class _SelectTimerDiffState extends State<SelectTimerDiff> {
                   )
                 ],
               ),
-              SizedBox(height: 40,),
+              SizedBox(height: sizedBoxHeight,),
               Text(
                 'Number of Questions : ',
                 style: TextStyle(
@@ -260,7 +264,7 @@ class _SelectTimerDiffState extends State<SelectTimerDiff> {
                   ),
                 ]
               ),
-              SizedBox(height: 40,),
+              SizedBox(height: sizedBoxHeight,),
               Text(
                 'Difficulty : ',
                 style: TextStyle(
@@ -268,7 +272,6 @@ class _SelectTimerDiffState extends State<SelectTimerDiff> {
                   fontSize: 18,
                 ),
               ),
-              
               SizedBox(height: 20,),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -346,19 +349,28 @@ class _SelectTimerDiffState extends State<SelectTimerDiff> {
                   ),
                 ]
               ),
-              SizedBox(height: 40,),
+              SizedBox(height: sizedBoxHeight,),
               Text(
                 'Duration of practice : $time',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600
+                ),
               ),
               
               SizedBox(height: 20,),
               Text(
                 'Number of Questions to attend : $noOfQues',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600
+                ),
               ),
 
               SizedBox(height: 20,),
               Text(
                 'Difficulty of Questions : $difficulty',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600
+                ),
               ),
 
               Spacer(),

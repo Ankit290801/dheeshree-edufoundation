@@ -11,7 +11,26 @@ class Dashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget star = Icon(Icons.star);
+    var height = MediaQuery.of(context).size.height;
+    double containerPadding;
+    var subjectTileHeight;
+    var subjectTileWidth;
+    var subjectTileSizedBox;
+
+    height < 650 ? 
+      {
+        containerPadding = 20,
+        subjectTileHeight = 155,
+        subjectTileWidth = 115,
+        subjectTileSizedBox = 15
+      } : 
+      {
+        containerPadding = 30,
+        subjectTileHeight = 175,
+        subjectTileWidth = 125,
+        subjectTileSizedBox = 20
+      };
+
     return Scaffold(
       drawer: NavigationDrawerWidget(),
       appBar: AppBar(
@@ -25,7 +44,7 @@ class Dashboard extends StatelessWidget {
       ),
       extendBodyBehindAppBar: true,
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 30.0),
+        padding: EdgeInsets.symmetric(vertical: containerPadding),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -62,8 +81,8 @@ class Dashboard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                       color: Color.fromARGB(255, 180, 17, 120),
                     ),
-                    height: 175,
-                    width: 125,
+                    height: subjectTileHeight,
+                    width: subjectTileWidth,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -72,7 +91,7 @@ class Dashboard extends StatelessWidget {
                           color: Colors.white,
                           size: 80,
                         ),
-                        SizedBox(height: 20),
+                        SizedBox(height: subjectTileSizedBox),
                         Text(
                           "Physics",
                           style: TextStyle(
@@ -96,8 +115,8 @@ class Dashboard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.red[800],
                     ),
-                    height: 175,
-                    width: 125,
+                    height: subjectTileHeight,
+                    width: subjectTileWidth,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -106,7 +125,7 @@ class Dashboard extends StatelessWidget {
                           color: Colors.white,
                           size: 80,
                         ),
-                        SizedBox(height: 20),
+                        SizedBox(height: subjectTileSizedBox),
                         Text(
                           "Chemistry",
                           style: TextStyle(
@@ -135,8 +154,8 @@ class Dashboard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.blue[800],
                     ),
-                    height: 175,
-                    width: 125,
+                    height: subjectTileHeight,
+                    width: subjectTileWidth,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -145,7 +164,7 @@ class Dashboard extends StatelessWidget {
                           color: Colors.white,
                           size: 80,
                         ),
-                        SizedBox(height: 20),
+                        SizedBox(height: subjectTileSizedBox),
                         Text(
                           "Maths",
                           style: TextStyle(
@@ -169,8 +188,8 @@ class Dashboard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                       color: Colors.green[800],
                     ),
-                    height: 175,
-                    width: 125,
+                    height: subjectTileHeight,
+                    width: subjectTileWidth,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -179,7 +198,7 @@ class Dashboard extends StatelessWidget {
                           color: Colors.white,
                           size: 80,
                         ),
-                        SizedBox(height: 20),
+                        SizedBox(height: subjectTileSizedBox),
                         Text(
                           "Biology",
                           style: TextStyle(

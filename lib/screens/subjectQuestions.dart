@@ -58,9 +58,6 @@ class _QuestionsState extends State<Questions> {
 
   void getQ() async {
     _questions = await ac.getQuestions(subjectName, chapterName, noOfQues, difficulty);
-    for(var i in _questions){
-      print(i.ques);
-    }
   }
 
   @override
@@ -112,8 +109,7 @@ class _QuestionsState extends State<Questions> {
 
   bool showHint = false;
   bool showAnswer = false;
-  bool answerTapped = false;
-  bool showRightWrong = false;
+
 
   int quesIndex = 0;
 
@@ -129,352 +125,239 @@ class _QuestionsState extends State<Questions> {
     });
   }
 
+  Future<bool> _handlePop() async {
+    return (
+      await showDialog(
+        context: context, 
+        builder: (context) => AlertDialog(
+          title: Text("Are You Sure?"),
+          content: Text("Do you want to quit the practice session"),
+          actions: [
+            TextButton(
+              onPressed: (){
+                Navigator.of(context).pop(true);
+              }, 
+              child: Text("Yes")
+            ),
+            TextButton(
+              onPressed: (){
+                Navigator.of(context).pop(false);
+              }, 
+              child: Text("No")
+            )
+          ],
+        )
+      )
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          chapterName,
-          
-        ),
-        actions: [
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
-              child: showTimer()
-            )
+
+    return WillPopScope(
+      onWillPop: _handlePop,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            chapterName,
+            
           ),
-        ],
-      ),
-      // body: Container(
-      //   padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-      //   color: Colors.white70,
-      //   child: FutureBuilder(
-      //     future: ac.getQuestions(subjectName, chapterName, noOfQues, difficulty),
-      //     builder: (BuildContext context, AsyncSnapshot snapshot){
-      //       if(snapshot.data == null){
-      //         return Center(
-      //           child: Text("Loading Questions..."),
-      //         );
-      //       }
-      //       else{
-      //         return ListView.builder(
-      //           itemCount: snapshot.data.length,
-      //           itemBuilder: (BuildContext context, int index){
-      //             return Container(
-      //               padding: EdgeInsets.all(22.0),
-      //               decoration: BoxDecoration(
-      //                 borderRadius: BorderRadius.circular(20.0),
-      //                 color: Colors.grey[850],
-      //               ),
-      //               child: Column(
-      //                 crossAxisAlignment: CrossAxisAlignment.start,
-      //                 children: [
-      //                   Text(
-      //                     "${index+1}. ${snapshot.data[index].ques}",
-      //                     style: TextStyle(
-      //                       color: Colors.grey[200],
-      //                       fontSize: 18.0,
-      //                       fontWeight: FontWeight.w500,
-      //                     ),  
-      //                   ),
-      //                   SizedBox(height: 15.0,),
-      //                   TextButton(
-      //                     style: ButtonStyle(
-      //                       padding: MaterialStateProperty.all(EdgeInsets.zero),
-      //                     ),
-      //                     onPressed: (){
-      //                     },
-      //                     child: Text(
-      //                         "a. ${snapshot.data[index].op1}",
-      //                         style: TextStyle(
-      //                           color: Colors.grey[200],
-      //                           fontSize: 16.0,
-      //                         ),
-      //                     ),
-      //                   ),
-      //                   TextButton(
-      //                     style: ButtonStyle(
-      //                       padding: MaterialStateProperty.all(EdgeInsets.zero)
-      //                     ),
-      //                     onPressed: (){
-      //                     },
-      //                     child: Text(
-      //                         "b. ${snapshot.data[index].op2}",
-      //                         style: TextStyle(
-      //                           color: Colors.grey[200],
-      //                           fontSize: 16.0,
-      //                         ),
-      //                     ),
-      //                   ),
-      //                   TextButton(
-      //                     style: ButtonStyle(
-      //                       padding: MaterialStateProperty.all(EdgeInsets.zero)
-      //                     ),
-      //                     onPressed: (){
-      //                     },
-      //                     child: Text(
-      //                         "c. ${snapshot.data[index].op3}",
-      //                         style: TextStyle(
-      //                           color: Colors.grey[200],
-      //                           fontSize: 16.0,
-      //                         ),
-      //                     ),
-      //                   ),
-      //                   TextButton(
-      //                     style: ButtonStyle(
-      //                       padding: MaterialStateProperty.all(EdgeInsets.zero)
-      //                     ),
-      //                     onPressed: (){
-      //                     },
-      //                     child: Text(
-      //                         "d. ${snapshot.data[index].op4}",
-      //                         style: TextStyle(
-      //                           color: Colors.grey[200],
-      //                           fontSize: 16.0,
-      //                         ),
-      //                     ),
-      //                   ),
-      //                   SizedBox(height: 20.0,),
-      //                   //Add expansion panel to hint text and show answer
-      //                   InkWell(
-      //                     onTap: (){
-      //                       setState(() {
-      //                         showHint = !showHint;
-      //                       });
-      //                     },
-      //                     child: Text(
-      //                       "Hint Text",
-      //                       style: TextStyle(
-      //                         color: Colors.blueGrey,
-      //                       ),
-      //                     ),
-      //                   ),
-      //                   SizedBox(height: 12.0,),
-      //                   showHint?Text(
-      //                     "${snapshot.data[index].hint}",
-      //                     style: TextStyle(
-      //                       color: Colors.grey.shade200,
-      //                     ),
-      //                   ):Text(""),
-      //                   SizedBox(height: 12.0,),
-      //                   InkWell(
-      //                     onTap: (){
-      //                       setState(() {
-      //                         showAnswer = !showAnswer;
-      //                       });
-      //                     },
-      //                     child: Text(
-      //                       "Show Answer",
-      //                       style: TextStyle(
-      //                         color: Colors.blueGrey,
-      //                       ),
-      //                     ),
-      //                   ),
-      //                   SizedBox(height: 12.0,),
-      //                   showAnswer?Text(
-      //                     "${snapshot.data[index].correctAns}",
-      //                     style: TextStyle(
-      //                       color: Colors.grey.shade200,
-      //                     ),
-      //                   ):Text(""),
-      //                 ],
-      //               ),
-      //             );
-      //           },
-      //         );
-      //       }
-      //     }
-      //   ),
-      // ) 
-
-
-      //UI to display for questions
-      body: _questions.isEmpty ? 
-        Center(
-          child: Text("Loading Questions..."),
-        )
-        :
-        Container(
-          color: Colors.white,
-          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                "Question ${quesIndex+1}.",
-                style: TextStyle(
-                  color: Color.fromARGB(255, 22, 22, 22),
-                  letterSpacing: 1.2,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500
-                ),
-              ),
-              SizedBox(height: 15,),
-              _questions[quesIndex].ques == "" ? 
-              Image.network(
-                _questions[quesIndex].quesImg
+          actions: [
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: showTimer()
               )
-              :
-              Text(
-                _questions[quesIndex].ques,
-                style: TextStyle(
-                  color: Colors.black,
-                  letterSpacing: 1.2,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w400,
-                ),
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: (){}, 
-                style: ButtonStyle(
-                  backgroundColor: answerTapped ? (showRightWrong ? MaterialStateProperty.all(Colors.green) : MaterialStateProperty.all(Colors.red) ) : MaterialStateProperty.all(Color.fromARGB(255, 231, 229, 229)),
-                  foregroundColor: MaterialStateProperty.all(Color.fromARGB(255, 22, 22, 22))
-                ),
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Text(
-                    "a. ${_questions[quesIndex].op1}",
-                  ),
-                ),
-              ),
-              SizedBox(height: 10,),
-              ElevatedButton(
-                onPressed: (){}, 
-                style: ButtonStyle(
-                  backgroundColor: answerTapped ? (showRightWrong ? MaterialStateProperty.all(Colors.green) : MaterialStateProperty.all(Colors.red) ) : MaterialStateProperty.all(Color.fromARGB(255, 231, 229, 229)),
-                  foregroundColor: MaterialStateProperty.all(Color.fromARGB(255, 22, 22, 22))
-                ),
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Text(
-                    "b. ${_questions[quesIndex].op2}"
-                  ),
-                ),
-              ),
-              SizedBox(height: 10,),
-              ElevatedButton(
-                onPressed: (){
-                  answerTapped = true;
-                }, 
-                style: ButtonStyle(
-                  backgroundColor: answerTapped ? (showRightWrong ? MaterialStateProperty.all(Colors.green) : MaterialStateProperty.all(Colors.red) ) : MaterialStateProperty.all(Color.fromARGB(255, 231, 229, 229)),
-                  foregroundColor: MaterialStateProperty.all(Color.fromARGB(255, 22, 22, 22))
-                ),
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Text(
-                    "c. ${_questions[quesIndex].op3}"
-                  ),
-                ),
-              ),
-              SizedBox(height: 10,),
-              ElevatedButton(
-                onPressed: (){
-                  answerTapped = true;
-                }, 
-                style: ButtonStyle(
-                  backgroundColor: answerTapped ? (showRightWrong ? MaterialStateProperty.all(Colors.green) : MaterialStateProperty.all(Colors.red) ) : MaterialStateProperty.all(Color.fromARGB(255, 231, 229, 229)),
-                  foregroundColor: MaterialStateProperty.all(Color.fromARGB(255, 22, 22, 22))
-                ),
-                child: Align(
-                  alignment: Alignment.bottomLeft,
-                  child: Text(
-                    "d. ${_questions[quesIndex].op4}"
-                  ),
-                ),
-              ),
-              SizedBox(height: 20,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(
-                    onPressed: (){
-                      setState(() {
-                        showHint = !showHint;
-                      });
-                    },
-                    style: ButtonStyle(
-                      padding: MaterialStateProperty.all(EdgeInsets.zero),
-                      foregroundColor: MaterialStateProperty.all(Color.fromARGB(255, 22, 22, 22))
-                  ),
-                    child: Text(
-                      "Hint",
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: (){
-                      setState(() {
-                        showAnswer = !showAnswer;
-                      });
-                    },
-                    style: ButtonStyle(
-                      padding: MaterialStateProperty.all(EdgeInsets.zero),
-                      foregroundColor: MaterialStateProperty.all(Color.fromARGB(255, 22, 22, 22))
-                  ),
-                    child: Text(
-                      "Show Answer",
-                    ),
-                  ),
-                ]
-              ),
-              SizedBox(height: 20),
-              showHint ?
-              Center(
-                child: Text(
-                  // _questions[quesIndex].hint
-                  "This is the Hint Text",
+            ),
+          ],
+        ),
+    
+        //UI to display for questions
+        body: _questions.isEmpty ? 
+          Center(
+            child: Text("Loading Questions..."),
+          )
+          :
+          Container(
+            color: Colors.white,
+            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  "Question ${quesIndex+1}.",
                   style: TextStyle(
+                    color: Color.fromARGB(255, 22, 22, 22),
+                    letterSpacing: 1.2,
                     fontSize: 20,
+                    fontWeight: FontWeight.w500
                   ),
                 ),
-              ) 
-              :
-              Container(),
-              showAnswer ?
-              Center(
-                child: Text(
-                  // _questions[quesIndex].hint
-                  "This is the Answer for the question",
+                SizedBox(height: 15,),
+                _questions[quesIndex].ques == "" ? 
+                Image.network(
+                  _questions[quesIndex].quesImg
+                )
+                :
+                Text(
+                  _questions[quesIndex].ques,
                   style: TextStyle(
-                    fontSize: 20,
+                    color: Colors.black,
+                    letterSpacing: 1.2,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
-              ) 
-              :
-              Container(),
-              Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  quesIndex>0 ?
-                  IconButton(
-                    onPressed: (){
-                      prevQuestion();
-                    }, 
-                    icon: Icon(
-                      Icons.arrow_back_rounded,
-                      color: Colors.grey
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: (){}, 
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 231, 229, 229)),
+                    foregroundColor: MaterialStateProperty.all(Color.fromARGB(255, 22, 22, 22))
+                  ),
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      "a. ${_questions[quesIndex].op1}",
                     ),
-                  ) : Container(),
-                  quesIndex < _questions.length-1 ? 
-                  IconButton(
-                    onPressed: (){
-                      nextQuestion();
-                    }, 
-                    icon: Icon(
-                      Icons.arrow_forward_rounded,
-                      color: Colors.grey
+                  ),
+                ),
+                SizedBox(height: 10,),
+                ElevatedButton(
+                  onPressed: (){}, 
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 231, 229, 229)),
+                    foregroundColor: MaterialStateProperty.all(Color.fromARGB(255, 22, 22, 22))
+                  ),
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      "b. ${_questions[quesIndex].op2}"
                     ),
-                  ) : 
-                  Container()
-                ],
-              ),
-            ],
-          ),
-        )
+                  ),
+                ),
+                SizedBox(height: 10,),
+                ElevatedButton(
+                  onPressed: (){
+    
+                  }, 
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 231, 229, 229)),
+                    foregroundColor: MaterialStateProperty.all(Color.fromARGB(255, 22, 22, 22))
+                  ),
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      "c. ${_questions[quesIndex].op3}"
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10,),
+                ElevatedButton(
+                  onPressed: (){
+                    
+                  }, 
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 231, 229, 229)),
+                    foregroundColor: MaterialStateProperty.all(Color.fromARGB(255, 22, 22, 22))
+                  ),
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Text(
+                      "d. ${_questions[quesIndex].op4}"
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextButton(
+                      onPressed: (){
+                        setState(() {
+                          showHint = !showHint;
+                        });
+                      },
+                      style: ButtonStyle(
+                        padding: MaterialStateProperty.all(EdgeInsets.zero),
+                        foregroundColor: MaterialStateProperty.all(Color.fromARGB(255, 22, 22, 22))
+                    ),
+                      child: Text(
+                        "Hint",
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: (){
+                        setState(() {
+                          showAnswer = !showAnswer;
+                        });
+                      },
+                      style: ButtonStyle(
+                        padding: MaterialStateProperty.all(EdgeInsets.zero),
+                        foregroundColor: MaterialStateProperty.all(Color.fromARGB(255, 22, 22, 22))
+                    ),
+                      child: Text(
+                        "Show Answer",
+                      ),
+                    ),
+                  ]
+                ),
+                SizedBox(height: 20),
+                showHint ?
+                Center(
+                  child: Text(
+                    // _questions[quesIndex].hint
+                    "This is the Hint Text",
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                ) 
+                :
+                Container(),
+                showAnswer ?
+                Center(
+                  child: Text(
+                    // _questions[quesIndex].hint
+                    "This is the Answer for the question",
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                ) 
+                :
+                Container(),
+                Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    quesIndex>0 ?
+                    IconButton(
+                      onPressed: (){
+                        prevQuestion();
+                      }, 
+                      icon: Icon(
+                        Icons.arrow_back_rounded,
+                        color: Colors.grey
+                      ),
+                    ) : Container(),
+                    quesIndex < _questions.length-1 ? 
+                    IconButton(
+                      onPressed: (){
+                        nextQuestion();
+                      }, 
+                      icon: Icon(
+                        Icons.arrow_forward_rounded,
+                        color: Colors.grey
+                      ),
+                    ) : 
+                    Container()
+                  ],
+                ),
+              ],
+            ),
+          )
+      ),
     );
   }
 }

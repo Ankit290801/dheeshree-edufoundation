@@ -51,8 +51,10 @@ class Mission extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Container(
           color: Color.fromARGB(255, 241, 238, 238),
+          height: MediaQuery.of(context).size.height,
           padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
           child: Column(
             children: [
