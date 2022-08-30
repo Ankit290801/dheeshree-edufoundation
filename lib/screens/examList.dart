@@ -27,7 +27,7 @@ class _ExamListState extends State<ExamList> {
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               decoration: BoxDecoration(
-                color: Color.fromARGB(252, 66, 65, 66),
+                color: Color.fromARGB(249, 196, 196, 197),
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
@@ -46,7 +46,7 @@ class _ExamListState extends State<ExamList> {
                 engExams[index],
                 style: TextStyle(
                   fontSize: 18.0,
-                  color: Color.fromARGB(255, 248, 245, 245),
+                  color: Color.fromARGB(255, 45, 45, 46),
                 ),
               ),
             ),
@@ -71,7 +71,7 @@ class _ExamListState extends State<ExamList> {
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               decoration: BoxDecoration(
-                color: Color.fromARGB(252, 66, 65, 66),
+                color: Color.fromARGB(250, 197, 196, 197),
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
@@ -90,7 +90,7 @@ class _ExamListState extends State<ExamList> {
                 medicalExams[index],
                 style: TextStyle(
                   fontSize: 18.0,
-                  color: Color.fromARGB(255, 248, 245, 245),
+                  color: Color.fromARGB(255, 46, 45, 45),
                 ),
               ),
             ),
@@ -115,7 +115,7 @@ class _ExamListState extends State<ExamList> {
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               decoration: BoxDecoration(
-                color: Color.fromARGB(252, 66, 65, 66),
+                color: Color.fromARGB(250, 197, 196, 197),
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
@@ -134,7 +134,7 @@ class _ExamListState extends State<ExamList> {
                 medicalExams[index],
                 style: TextStyle(
                   fontSize: 18.0,
-                  color: Color.fromARGB(255, 248, 245, 245),
+                  color: Color.fromARGB(255, 46, 45, 45),
                 ),
               ),
             ),
@@ -150,7 +150,7 @@ class _ExamListState extends State<ExamList> {
       extendBody: true,
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: 60),
+          padding: EdgeInsets.symmetric(vertical: 30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -181,9 +181,11 @@ class _ExamListState extends State<ExamList> {
                         child: Column(
                           children: [
                             CircleAvatar(
+                              backgroundColor: Colors.grey.shade300,
                               radius: 30,
                               child: Icon(
                                 Icons.person,
+                                color: Colors.black,
                               ),
                             ),
                             SizedBox(height: 10,),
@@ -220,9 +222,11 @@ class _ExamListState extends State<ExamList> {
                         child: Column(
                           children: [
                             CircleAvatar(
+                              backgroundColor: Colors.grey.shade300,
                               radius: 30,
                               child: Icon(
                                 Icons.person,
+                                color: Colors.black,
                               ),
                             ),
                             SizedBox(height: 10,),
@@ -259,9 +263,11 @@ class _ExamListState extends State<ExamList> {
                         child: Column(
                           children: [
                             CircleAvatar(
+                              backgroundColor: Colors.grey.shade300,
                               radius: 30,
                               child: Icon(
                                 Icons.person,
+                                color: Colors.black,
                               ),
                             ),
                             SizedBox(height: 10,),
@@ -280,7 +286,11 @@ class _ExamListState extends State<ExamList> {
                   ],
                 ),
               ),
-              
+              Divider(
+                indent: 15,
+                endIndent: 15,
+                thickness: 2,
+              ),
               showEngList ? engineeringExamList() : Container(),
               showMedicalList ? medicalExamList() : Container(),
               showOtherList ? otherExamList() : Container(),

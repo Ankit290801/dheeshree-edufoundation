@@ -30,7 +30,7 @@ class _SelectTimerDiffState extends State<SelectTimerDiff> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
 
-    var sizedBoxHeight;
+    double sizedBoxHeight;
 
     height < 610 ? sizedBoxHeight = 30 : sizedBoxHeight = 40;
 

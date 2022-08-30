@@ -31,8 +31,9 @@ class NavigationDrawerWidget extends StatelessWidget {
     }
 
     return Drawer(
+      elevation: 0,
       child: Container(
-        color: Color.fromARGB(255, 230, 227, 227),
+        color: Color.fromARGB(255, 238, 235, 235),
         padding: EdgeInsets.symmetric(horizontal: 1),
         child: ListView(
           children: [
@@ -55,12 +56,12 @@ class NavigationDrawerWidget extends StatelessWidget {
               onTap: () => selected(context, 2),
             ),
             SizedBox(height: 15,),
-            ListTile(
-              leading: Icon(Icons.info_outline),
-              title: Text('About Us'),
-              onTap: () => selected(context, 3),
-            ),
-            SizedBox(height: height*0.30),
+            // ListTile(
+            //   leading: Icon(Icons.info_outline),
+            //   title: Text('About Us'),
+            //   onTap: () => selected(context, 3),
+            // ),
+            SizedBox(height: height*0.40),
             Align(
               alignment: Alignment.center,
               child: Text(

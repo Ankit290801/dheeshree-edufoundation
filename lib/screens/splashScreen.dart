@@ -34,8 +34,8 @@ class _SplashState extends State<Splash> {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
 
-    var fontsize;
-    var spinsize;
+    double fontsize;
+    double spinsize;
 
     width < 385 ? {
       fontsize = 30,

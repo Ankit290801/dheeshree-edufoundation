@@ -8,7 +8,7 @@ class Team extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
 
-    Widget buildTeamCard({required String name, required String pos}){
+    Widget buildTeamCard({required String name, required String pos, required String img}){
       return Container(
         height: 300,
         child: Stack(
@@ -106,9 +106,9 @@ class Team extends StatelessWidget {
                 backgroundColor: Color.fromARGB(255, 199, 202, 199),
                 radius: 60,
                 child: Image.asset(
-                  'assets/pic.png',
-                  height: 90,
-                  width: 90,
+                  img,
+                  height: 110,
+                  width: 110,
                 ),
               ),
             )
@@ -120,21 +120,31 @@ class Team extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Meet the Team'),
+        title: Text(
+          'Meet the Team',
+          style: TextStyle(
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        elevation: 0,
+        backgroundColor: Color.fromARGB(255, 240, 238, 238),
+        foregroundColor: Colors.black,
       ),
       body: Container(
         color: Color.fromARGB(255, 240, 238, 238),
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        padding: EdgeInsets.symmetric(horizontal: 20),
         child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
-              buildTeamCard(name: "Surajit Mandal", pos: "CEO"),
+              buildTeamCard(name: "Surajit Mandal", pos: "CEO", img: 'assets/surajit.png'),
               SizedBox(height: 20,),
-              buildTeamCard(name: "Ankit Banerjee", pos: "App Developer"),
+              buildTeamCard(name: "Ankit Banerjee", pos: "App Developer", img: 'assets/ankit.png'),
               SizedBox(height: 20,),
-              buildTeamCard(name: "Arko Sen", pos: "Front-end Web Developer"),
+              buildTeamCard(name: "Arko Sen", pos: "Front-end Web Developer", img: 'assets/arko.png'),
               SizedBox(height: 20,),
-              buildTeamCard(name: "Bhaskar Sengupta", pos: "Back-end Developer"),
+              buildTeamCard(name: "Bhaskar Sengupta", pos: "Back-end Developer", img: 'assets/bhaskar.png'),
+              SizedBox(height: 20,),
             ],
           ),
         ),
