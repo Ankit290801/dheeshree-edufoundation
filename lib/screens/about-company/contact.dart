@@ -3,15 +3,21 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class Contact extends StatelessWidget {
+class Contact extends StatefulWidget {
   const Contact({Key? key}) : super(key: key);
+
+  @override
+  State<Contact> createState() => _ContactState();
+}
+
+class _ContactState extends State<Contact> {
+
+  final _formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-
-    final _formkey = GlobalKey<FormState>();
 
     Widget contactItem({
       required IconData ic,
@@ -118,7 +124,7 @@ class Contact extends StatelessWidget {
                       hintText: 'Your message',
                     ),
                   ),
-                  SizedBox(height: 20,),
+                  SizedBox(height: 30,),
                   Align(
                     alignment: Alignment.center,
                     child: InkWell(
@@ -227,7 +233,7 @@ class Contact extends StatelessWidget {
             Container(
               color: Colors.deepPurple.shade900,
               padding: EdgeInsets.only(bottom: 20),
-              height: height * 0.5,
+              height: height * 0.30,
               width: width,
               child: Column(
                 children: [
@@ -265,13 +271,11 @@ class Contact extends StatelessWidget {
               // height: height * 0.4,
               // width: width * 0.8,
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 245, 245, 245),
                 borderRadius: BorderRadius.circular(20),
               ),
               padding: EdgeInsets.all(15),
               child: contactForm(),
             ),
-            SizedBox(height: 10,)
           ],
         ),
       ),
